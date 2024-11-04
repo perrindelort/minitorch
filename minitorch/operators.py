@@ -11,114 +11,246 @@ from typing import Callable, Iterable
 
 
 def mul(x: float, y: float) -> float:
-    "$f(x, y) = x * y$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    r"""Multiplies two numbers : $f(x, y) = x \times y$
+
+    Args:
+        x (float): First number
+        y (float): Second number
+
+    Returns:
+        float: Result of x * y
+    """
+    return x * y
 
 
 def id(x: float) -> float:
-    "$f(x) = x$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    """Returns the input unchanged : $f(x) = x$
+
+    Args:
+        x (float): A number
+
+    Returns:
+        float: Input unchanged
+    """
+    return x
 
 
 def add(x: float, y: float) -> float:
-    "$f(x, y) = x + y$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    """Adds two numbers : $f(x, y) = x + y$
+
+    Args:
+        x (float): First number
+        y (float): Second number
+
+    Returns:
+        float: Result of the addition x + y
+    """
+    return x + y
 
 
 def neg(x: float) -> float:
-    "$f(x) = -x$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    """Negates a number : $f(x) = -x$
+
+    Args:
+        x (float): A number
+
+    Returns:
+        float: The negated number
+    """
+    return -x
 
 
 def lt(x: float, y: float) -> float:
-    "$f(x) =$ 1.0 if x is less than y else 0.0"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    """Checks if one number is less than another : $f(x) =$ 1.0 if x is less than y else 0.0
+
+    Args:
+        x (float): Number to be checked
+        y (float): Number checked against
+
+    Returns:
+        float: Result of the comparison in float
+    """
+    return 1.0 if x < y else 0.0
 
 
 def eq(x: float, y: float) -> float:
-    "$f(x) =$ 1.0 if x is equal to y else 0.0"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    """Checks if two numbers are equal : $f(x) =$ 1.0 if x is equal to y else 0.0
+
+    Args:
+        x (float): Number to be checked
+        y (float): Number to be checked against
+
+    Returns:
+        float: Result of the comparison in float
+    """
+    return 1.0 if x == y else 0.0
 
 
 def max(x: float, y: float) -> float:
-    "$f(x) =$ x if x is greater than y else y"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    """Returns the larger of two numbers : $f(x) =$ x if x is greater than y else y
+
+    Args:
+        x (float): First number
+        y (float): Second number
+
+    Returns:
+        float: Largest number between the two
+    """
+    return x if bool(lt(y, x)) else y
 
 
-def is_close(x: float, y: float) -> float:
-    "$f(x) = |x - y| < 1e-2$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+def is_close(x: float, y: float, eps: float = 1e-2) -> float:
+    """Checks if two numbers are close in value : $f(x) = |x - y| < 1e-2$"
+
+    Args:
+        x (float): First number
+        y (float): Second number
+        eps (float) : Maximum distance to be considered close
+
+    Returns:
+        float: Whether or not the numbers are closed
+    """
+    return lt(abs(x - y), eps)
 
 
 def sigmoid(x: float) -> float:
-    r"""
-    $f(x) =  \frac{1.0}{(1.0 + e^{-x})}$
+    r"""Calculates the sigmoid function : $f(x) =  \frac{1.0}{(1.0 + e^{-x})}$
 
-    (See https://en.wikipedia.org/wiki/Sigmoid_function )
+        (See https://en.wikipedia.org/wiki/Sigmoid_function )
 
-    Calculate as
+        Calculate as
 
-    $f(x) =  \frac{1.0}{(1.0 + e^{-x})}$ if x >=0 else $\frac{e^x}{(1.0 + e^{x})}$
+        $f(x) =  \frac{1.0}{(1.0 + e^{-x})}$ if x >=0 else $\frac{e^x}{(1.0 + e^{x})}$
 
-    for stability.
+        for stability.
+
+    Args:
+        x (float): Input number
+
+    Returns:
+        float: Result of the sigmoid function applied to the input
     """
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    if x >= 0:
+        return 1.0 / (1.0 + exp(neg(x)))
+    else:
+        return exp(x) / (1 + exp(x))
 
 
 def relu(x: float) -> float:
-    """
-    $f(x) =$ x if x is greater than 0, else 0
+    """Applies the ReLU activation function : $f(x) =$ x if x is greater than 0, else 0
 
-    (See https://en.wikipedia.org/wiki/Rectifier_(neural_networks) .)
+        (See https://en.wikipedia.org/wiki/Rectifier_(neural_networks) .)
+
+    Args:
+        x (float): Input number
+
+    Returns:
+        float: Result of the ReLU function applied to the input
     """
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    return x if x > 0 else 0
 
 
 EPS = 1e-6
 
 
 def log(x: float) -> float:
-    "$f(x) = log(x)$"
+    """Calculates the natural logarithm : $f(x) = log(x)$
+
+    Args:
+        x (float): Input number
+
+    Returns:
+        float: Result of the log function applied to the input
+    """
     return math.log(x + EPS)
 
 
 def exp(x: float) -> float:
-    "$f(x) = e^{x}$"
+    """Calculates the exponential function : $f(x) = e^{x}$
+
+    Args:
+        x (float): Input number
+
+    Returns:
+        float: Result of the exp function applied to the input
+    """
     return math.exp(x)
 
 
 def log_back(x: float, d: float) -> float:
-    r"If $f = log$ as above, compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    r"""Computes the derivative of log times a second arg : If $f = log$ as above, compute $d \times f'(x)$
+
+
+    Args:
+        x (float): Input number
+        d (float): Number to multiply the derivative
+
+    Returns:
+        float: Result of d • log'(x)
+    """
+    return d / (x + EPS)
 
 
 def inv(x: float) -> float:
-    "$f(x) = 1/x$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    """Calculates the reciprocal : $f(x) = 1/x$
+
+    Args:
+        x (float): Input number
+
+    Raises:
+        ValueError: The reciprocal function is undefined for x = 0.0
+
+    Returns:
+        float: Result of the inv function applied to the input
+    """
+    if x == 0.0:
+        raise ValueError("Reciprocal function is undefined for x = 0.0")
+    else:
+        return 1 / x
 
 
 def inv_back(x: float, d: float) -> float:
-    r"If $f(x) = 1/x$ compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    r"""Computes the derivative of reciprocal times a second arg : If $f(x) = 1/x$ compute $d \times f'(x)$
+
+    Args:
+        x (float): Input number
+        d (float): Number to multiply the derivative
+
+    Raises:
+        ValueError: The reciprocal function is undefined for x = 0.0 and thus cannot be derived
+
+    Returns:
+        float: Result of d • inv'(x)
+    """
+    if x == 0.0:
+        raise ValueError(
+            "The reciprocal function is undefined for x = 0.0 and thus cannot be derived"
+        )
+    else:
+        return neg(d / x**2)
 
 
 def relu_back(x: float, d: float) -> float:
-    r"If $f = relu$ compute $d \times f'(x)$"
-    # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    r"""Computes the derivative of ReLU times a second arg : If $f = relu$ compute $d \times f'(x)$
+
+    Args:
+        x (float): Input number
+        d (float): Number to multiply the derivative
+
+    Raises:
+        ValueError: The ReLU function cannot be derived for x = 0 as ReLU+(0) ≠ ReLU-(0)
+
+    Returns:
+        float: Result of d • ReLU'(x)
+    """
+    if x == 0.0:
+        raise ValueError(
+            "The ReLU function cannot be derived for x = 0 as ReLU+(0) ≠ ReLU-(0)"
+        )
+    elif x < 0:
+        return 0
+    else:
+        return d
 
 
 # ## Task 0.3
@@ -140,13 +272,13 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
          new list
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def negList(ls: Iterable[float]) -> Iterable[float]:
     "Use `map` and `neg` to negate each element in `ls`"
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def zipWith(
@@ -166,13 +298,13 @@ def zipWith(
 
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
     "Add the elements of `ls1` and `ls2` using `zipWith` and `add`"
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def reduce(
@@ -191,16 +323,16 @@ def reduce(
          fn(x_1, x_0)))`
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def sum(ls: Iterable[float]) -> float:
     "Sum up a list using `reduce` and `add`."
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
 
 
 def prod(ls: Iterable[float]) -> float:
     "Product of a list using `reduce` and `mul`."
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
