@@ -131,9 +131,9 @@ def sigmoid(x: float) -> float:
         float: Result of the sigmoid function applied to the input
     """
     if x >= 0:
-        return 1.0 / (1.0 + exp(neg(x)))
+        return 1.0 / (1.0 + exp(-x))
     else:
-        return exp(x) / (1 + exp(x))
+        return exp(x) / (1.0 + exp(x))
 
 
 def relu(x: float) -> float:
@@ -188,7 +188,12 @@ def log_back(x: float, d: float) -> float:
     Returns:
         float: Result of d • log'(x)
     """
-    return d / (x + EPS)
+    if x > 0.0:
+        return d / (x + EPS)
+    else:
+        raise ValueError(
+            "The log function is undefined for x <= 0 and thus cannot be derived"
+        )
 
 
 def inv(x: float) -> float:
@@ -232,25 +237,17 @@ def inv_back(x: float, d: float) -> float:
 
 def relu_back(x: float, d: float) -> float:
     r"""Computes the derivative of ReLU times a second arg : If $f = relu$ compute $d \times f'(x)$
+        The ReLU function cannot be derived for x = 0 as ReLU+(0) ≠ ReLU-(0) but Pytorch's Autograd
+        set its value to 0 according to https://hal.science/hal-03265059/file/Impact_of_ReLU_prime.pdf
 
     Args:
         x (float): Input number
         d (float): Number to multiply the derivative
 
-    Raises:
-        ValueError: The ReLU function cannot be derived for x = 0 as ReLU+(0) ≠ ReLU-(0)
-
     Returns:
         float: Result of d • ReLU'(x)
     """
-    if x == 0.0:
-        raise ValueError(
-            "The ReLU function cannot be derived for x = 0 as ReLU+(0) ≠ ReLU-(0)"
-        )
-    elif x < 0:
-        return 0
-    else:
-        return d
+    return 0 if x < 0 else d
 
 
 # ## Task 0.3
