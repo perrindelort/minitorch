@@ -261,6 +261,8 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
 
     See https://en.wikipedia.org/wiki/Map_(higher-order_function)
 
+    Nota Bene : We could use map from python but the idea is to do it ourself
+
     Args:
         fn: Function from one value to one value.
 
@@ -268,14 +270,23 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
          A function that takes a list, applies `fn` to each element, and returns a
          new list
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+
+    def f(iterable_x):
+        return [fn(x) for x in iterable_x]
+
+    return f
 
 
 def negList(ls: Iterable[float]) -> Iterable[float]:
-    "Use `map` and `neg` to negate each element in `ls`"
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    """Use `map` and `neg` to negate each element in `ls`
+
+    Args:
+        ls (Iterable[float]): Iterable to negate
+
+    Returns:
+        Iterable[float]: Result of the negation
+    """
+    return map(neg)(ls)
 
 
 def zipWith(
@@ -294,14 +305,24 @@ def zipWith(
          applying fn(x, y) on each pair of elements.
 
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+
+    def f(iterable_x, iterable_y):
+        return [fn(x, y) for x, y in zip(iterable_x, iterable_y)]
+
+    return f
 
 
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
-    "Add the elements of `ls1` and `ls2` using `zipWith` and `add`"
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    """Add the elements of `ls1` and `ls2` using `zipWith` and `add`
+
+    Args:
+        ls1 (Iterable[float]): First Iterable
+        ls2 (Iterable[float]): Second Iterable
+
+    Returns:
+        Iterable[float]: Result of the element-wise sum of the two Iterables
+    """
+    return zipWith(add)(ls1, ls2)
 
 
 def reduce(
@@ -319,17 +340,35 @@ def reduce(
          $x_1 \ldots x_n$ and computes the reduction :math:`fn(x_3, fn(x_2,
          fn(x_1, x_0)))`
     """
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+
+    def f(iterable_x):
+        val = start
+        for x in iterable_x:
+            val = fn(val, x)
+        return val
+
+    return f
 
 
 def sum(ls: Iterable[float]) -> float:
-    "Sum up a list using `reduce` and `add`."
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    """Sum up a list using `reduce` and `add`.
+
+    Args:
+        ls (Iterable[float]): List of floats to be summed
+
+    Returns:
+        float: Sum of the list's elements
+    """
+    return reduce(add, 0)(ls)
 
 
 def prod(ls: Iterable[float]) -> float:
-    "Product of a list using `reduce` and `mul`."
-    # TODO: Implement for Task 0.3.
-    raise NotImplementedError("Need to implement for Task 0.3")
+    """Product of a list using `reduce` and `mul`.
+
+    Args:
+        ls (Iterable[float]): List of floats to be multiplied
+
+    Returns:
+        float: Product of the list's elements
+    """
+    return reduce(mul, 1.0)(ls)
