@@ -21,6 +21,14 @@ class Graph:
 
 
 def simple(N: int) -> Graph:
+    """Create 2 sets totalling N points easily separable by a line of equation y = b
+
+    Args:
+        N (int): Total number of points
+
+    Returns:
+        Graph: Graph of the dataset
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -30,6 +38,14 @@ def simple(N: int) -> Graph:
 
 
 def diag(N: int) -> Graph:
+    """Create 2 sets totalling N points easily separable by a line of equation y = ax + b
+
+    Args:
+        N (int): Total number of points
+
+    Returns:
+        Graph: Graph of the dataset
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -39,6 +55,14 @@ def diag(N: int) -> Graph:
 
 
 def split(N: int) -> Graph:
+    """Create 2 sets totalling N points easily separable by two vertical lines of equation y1 = b and y2 = c
+
+    Args:
+        N (int): Total number of points
+
+    Returns:
+        Graph: Graph of the dataset
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -48,6 +72,14 @@ def split(N: int) -> Graph:
 
 
 def xor(N: int) -> Graph:
+    """Create 2 sets totalling N points easily separable by two lines of equation y = b and x = a
+
+    Args:
+        N (int): Total number of points
+
+    Returns:
+        Graph: Graph of the dataset
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -57,6 +89,14 @@ def xor(N: int) -> Graph:
 
 
 def circle(N: int) -> Graph:
+    """Create 2 sets totalling N points where one is inside a circle and the other is outside
+
+    Args:
+        N (int): Total number of points
+
+    Returns:
+        Graph: Graph of the dataset
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -67,6 +107,15 @@ def circle(N: int) -> Graph:
 
 
 def spiral(N: int) -> Graph:
+    """Create 2 sets totalling N points in the form of two 'parallel' spirals
+
+    Args:
+        N (int): Total number of points
+
+    Returns:
+        Graph: Graph of the dataset
+    """
+
     def x(t: float) -> float:
         return t * math.cos(t) / 20.0
 
