@@ -25,19 +25,25 @@ class Module:
         self.training = True
 
     def modules(self) -> Sequence[Module]:
-        "Return the direct child modules of this module."
+        """Return the direct child modules of this module.
+
+        Returns:
+            Sequence[Module]: This module's children modules
+        """
         m: Dict[str, Module] = self.__dict__["_modules"]
         return list(m.values())
 
     def train(self) -> None:
-        "Set the mode of this module and all descendent modules to `train`."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        """Set the mode of this module and all descendent modules to `train`."""
+        self.training = True
+        for submodule in self.modules():
+            submodule.train()
 
     def eval(self) -> None:
-        "Set the mode of this module and all descendent modules to `eval`."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        """Set the mode of this module and all descendent modules to `eval`."""
+        self.training = False
+        for submodule in self.modules():
+            submodule.eval()
 
     def named_parameters(self) -> Sequence[Tuple[str, Parameter]]:
         """
@@ -47,13 +53,29 @@ class Module:
         Returns:
             The name and `Parameter` of each ancestor parameter.
         """
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+
+        def recursive_named_parameters(module, parents=""):
+            temp = [
+                (f"{parents}.{param_name}" if parents else param_name, param)
+                for param_name, param in module.__dict__["_parameters"].items()
+            ]
+            for submodule_name, submodule in module.__dict__["_modules"].items():
+                temp += recursive_named_parameters(
+                    submodule,
+                    f"{parents}.{submodule_name}" if parents else submodule_name,
+                )
+            return temp
+
+        return recursive_named_parameters(self)
 
     def parameters(self) -> Sequence[Parameter]:
-        "Enumerate over all the parameters of this module and its descendents."
-        # TODO: Implement for Task 0.4.
-        raise NotImplementedError('Need to implement for Task 0.4')
+        """Enumerate over all the parameters of this module and its descendents.
+
+
+        Returns:
+            Sequence[Parameter]: All the parameters of the module and its descendents
+        """
+        return list(map(lambda x: x[1], self.named_parameters()))
 
     def add_parameter(self, k: str, v: Any) -> Parameter:
         """
