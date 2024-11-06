@@ -22,8 +22,10 @@ def central_difference(f: Any, *vals: Any, arg: int = 0, epsilon: float = 1e-6) 
     Returns:
         An approximation of $f'_i(x_0, \ldots, x_{n-1})$
     """
-    # TODO: Implement for Task 1.1.
-    raise NotImplementedError('Need to implement for Task 1.1')
+    return (
+        f(*[(v + epsilon if i == arg else v) for i, v in enumerate(vals)])
+        - f(*[(v - epsilon if i == arg else v) for i, v in enumerate(vals)])
+    ) / (2 * epsilon)
 
 
 variable_count = 1
@@ -62,7 +64,7 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
         Non-constant Variables in topological order starting from the right.
     """
     # TODO: Implement for Task 1.4.
-    raise NotImplementedError('Need to implement for Task 1.4')
+    raise NotImplementedError("Need to implement for Task 1.4")
 
 
 def backpropagate(variable: Variable, deriv: Any) -> None:
@@ -77,7 +79,7 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
     No return. Should write to its results to the derivative values of each leaf through `accumulate_derivative`.
     """
     # TODO: Implement for Task 1.4.
-    raise NotImplementedError('Need to implement for Task 1.4')
+    raise NotImplementedError("Need to implement for Task 1.4")
 
 
 @dataclass
