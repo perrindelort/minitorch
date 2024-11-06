@@ -147,7 +147,7 @@ def relu(x: float) -> float:
     Returns:
         float: Result of the ReLU function applied to the input
     """
-    return x if x > 0 else 0
+    return x if x > 0 else 0.0
 
 
 EPS = 1e-6
@@ -211,7 +211,7 @@ def inv(x: float) -> float:
     if x == 0.0:
         raise ValueError("Reciprocal function is undefined for x = 0.0")
     else:
-        return 1 / x
+        return 1.0 / x
 
 
 def inv_back(x: float, d: float) -> float:
@@ -247,7 +247,7 @@ def relu_back(x: float, d: float) -> float:
     Returns:
         float: Result of d • ReLU'(x)
     """
-    return 0 if x < 0 else d
+    return 0.0 if x < 0 else d
 
 
 # ## Task 0.3
