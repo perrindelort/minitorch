@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Any, Iterable, List, Tuple
 
 from typing_extensions import Protocol
+from collections import defaultdict
 
 # ## Task 1.1
 # Central Difference calculation
@@ -63,8 +64,21 @@ def topological_sort(variable: Variable) -> Iterable[Variable]:
     Returns:
         Non-constant Variables in topological order starting from the right.
     """
-    # TODO: Implement for Task 1.4.
-    raise NotImplementedError("Need to implement for Task 1.4")
+    computational_graph = []
+    visited = set()
+
+    def visit(var: Variable):
+        if var.unique_id in visited:
+            return
+        elif not var.is_leaf():
+            for v in var.parents:
+                if not v.is_constant():
+                    visit(v)
+        visited.add(var.unique_id)
+        computational_graph.insert(0, var)
+
+    visit(variable)
+    return computational_graph
 
 
 def backpropagate(variable: Variable, deriv: Any) -> None:
@@ -78,8 +92,15 @@ def backpropagate(variable: Variable, deriv: Any) -> None:
 
     No return. Should write to its results to the derivative values of each leaf through `accumulate_derivative`.
     """
-    # TODO: Implement for Task 1.4.
-    raise NotImplementedError("Need to implement for Task 1.4")
+    computational_graph = topological_sort(variable)
+    derivatives = defaultdict(float)
+    derivatives[variable.unique_id] = deriv
+    for var in computational_graph:
+        if var.is_leaf():
+            var.accumulate_derivative(derivatives[var.unique_id])
+        else:
+            for v, d in var.chain_rule(derivatives[var.unique_id]):
+                derivatives[v.unique_id] += d
 
 
 @dataclass

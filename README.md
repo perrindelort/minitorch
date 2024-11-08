@@ -17,7 +17,7 @@ Documentation can be accessed [here](https://minitorch.github.io/)
   - [x] Task 1.1 : Numerical Derivatives
   - [x] Task 1.2 : Scalars
   - [x] Task 1.3 : Chain Rule
-  - [ ] Task 1.4 : Backpropagation
+  - [x] Task 1.4 : Backpropagation
   - [ ] Task 1.5 : Training
 - [ ] Module 2 : Tensors
   - [ ] Task 2.1 : Tensor Data-Indexing
