@@ -15,8 +15,8 @@ Documentation can be accessed [here](https://minitorch.github.io/)
   - [x] Task 0.5 : Visualization
 - [ ] Module 1 : Autodiff
   - [x] Task 1.1 : Numerical Derivatives
-  - [ ] Task 1.2 : Scalars
-  - [ ] Task 1.3 : Chain Rule
+  - [x] Task 1.2 : Scalars
+  - [x] Task 1.3 : Chain Rule
   - [ ] Task 1.4 : Backpropagation
   - [ ] Task 1.5 : Training
 - [ ] Module 2 : Tensors
