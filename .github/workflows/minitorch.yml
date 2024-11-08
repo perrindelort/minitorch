@@ -24,55 +24,33 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 --ignore "N801, E203, E266, E501, W503, F812, F401, F841, E741, N803, N802, N806" minitorch/ tests/ project/
         flake8 --ignore "N801, E203, E266, E501, W503, F812, F401, F841, E741, N803, N802, N806" minitorch/ tests/ project/ --per-file-ignores="project/interface/mlprimer.py:F821,F811"
     - name: Test with pytest
       run: |
-        set -e  # Exit immediately on any command failure
-        last_successful_test="None"
-
-        # Define a function to run tests and stop on first failure
-        run_test() {
-          local test_name="$1"
-          echo "Running $test_name"
-          if pytest tests -x -m "$test_name"; then
-            last_successful_test="$test_name"
-          else
-            echo "❌ Test failed: $test_name"
-            echo "✅ Last successful test was: $last_successful_test"
-            exit 0  # Stop running tests but mark the workflow as successful
-          fi
-        }
-
-        # Run tests in sequence, stopping on the first failure
         echo "Module 0"
-        run_test "task0_1"
-        run_test "task0_2"
-        run_test "task0_3"
-        run_test "task0_4"
-
+        pytest tests -x -m task0_1
+        pytest tests -x -m task0_2
+        pytest tests -x -m task0_3
+        pytest tests -x -m task0_4
         echo "Module 1"
-        run_test "task1_1"
-        run_test "task1_2"
-        run_test "task1_3"
-        run_test "task1_4"
-
+        pytest tests -x -m task1_1
+        pytest tests -x -m task1_2
+        pytest tests -x -m task1_3
+        pytest tests -x -m task1_4
         echo "Module 2"
-        run_test "task2_1"
-        run_test "task2_2"
-        run_test "task2_3"
-        run_test "task2_4"
-
+        pytest tests -x -m task2_1
+        pytest tests -x -m task2_2
+        pytest tests -x -m task2_3
+        pytest tests -x -m task2_4
         echo "Module 3"
-        run_test "task3_1"
-        run_test "task3_2"
-        run_test "task3_3"
-        run_test "task3_4"
-
+        pytest tests -x -m task3_1
+        pytest tests -x -m task3_2
+        pytest tests -x -m task3_3
+        pytest tests -x -m task3_4
         echo "Module 4"
-        run_test "task4_1"
-        run_test "task4_2"
-        run_test "task4_3"
-        run_test "task4_4"
-
-        echo "✅ All tests passed up to the last successful test: $last_successful_test"
-      continue-on-error: true  # Ensures the job itself doesn't fail on test failure
+        pytest tests -x -m task4_1
+        pytest tests -x -m task4_2
+        pytest tests -x -m task4_3
+        pytest tests -x -m task4_4
