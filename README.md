@@ -54,5 +54,5 @@ Result of the same network built with MiniTorch's scalars on 3 different dataset
 <div style="display: flex; gap: 50;">
     <img src="results/1.5_split.PNG" alt="Image 1" height="500">
     <img src="results/1.5_circle.PNG" alt="Image 2" height="500">
-    <img src="results/0.5_xor.PNG" alt="Image 3" height="500">
+    <img src="results/1.5_xor.PNG" alt="Image 3" height="500">
 </div>
