@@ -13,12 +13,12 @@ Documentation can be accessed [here](https://minitorch.github.io/)
   - [x] Task 0.3 : Functional Python
   - [x] Task 0.4 : Modules
   - [x] Task 0.5 : Visualization
-- [ ] Module 1 : Autodiff
+- [x] Module 1 : Autodiff
   - [x] Task 1.1 : Numerical Derivatives
   - [x] Task 1.2 : Scalars
   - [x] Task 1.3 : Chain Rule
   - [x] Task 1.4 : Backpropagation
-  - [ ] Task 1.5 : Training
+  - [x] Task 1.5 : Training
 - [ ] Module 2 : Tensors
   - [ ] Task 2.1 : Tensor Data-Indexing
   - [ ] Task 2.2 : Tensor Broadcasting
@@ -40,10 +40,19 @@ Documentation can be accessed [here](https://minitorch.github.io/)
 
 # Results
 ## Module 0
-Result of the same network on 3 different datasets : simple, circle and spiral
+Result of the same network built with Pytorch on 3 different datasets : simple, circle and spiral
 
 <div style="display: flex; gap: 50;">
-    <img src="results/0.5_circle.PNG" alt="Image 1" height="500">
-    <img src="results/0.5_simple.PNG" alt="Image 2" height="500">
+    <img src="results/0.5_simple.PNG" alt="Image 1" height="500">
+    <img src="results/0.5_circle.PNG" alt="Image 2" height="500">
     <img src="results/0.5_spiral.PNG" alt="Image 3" height="500">
+</div>
+
+## Module 1
+Result of the same network built with MiniTorch's scalars on 3 different datasets : split, circle and xor
+
+<div style="display: flex; gap: 50;">
+    <img src="results/1.5_split.PNG" alt="Image 1" height="500">
+    <img src="results/1.5_circle.PNG" alt="Image 2" height="500">
+    <img src="results/0.5_xor.PNG" alt="Image 3" height="500">
 </div>
